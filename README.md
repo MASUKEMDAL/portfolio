@@ -45,6 +45,7 @@ WhatsApp: Me envie uma mensagem!
 Email: matheusmarferreira@hotmail.com
 
 📚 Projetos Recentes
+
 Aqui estão alguns dos projetos que desenvolvi:
 
 Ferramenta de Gestão de Equipes - 🛠️ Uma solução para gerenciar equipes e suas tarefas.
@@ -58,6 +59,7 @@ Ferramenta de Cronograma de Treinamentos - 📅 Organize e gerencie cronogramas 
 Website Profissional - 🌐 Um site para apresentar portfólios e serviços profissionais.
 
 📈 Por que contratar-me?
+
 Experiência sólida com diversas tecnologias.
 
 Comprometimento com qualidade e eficiência.
