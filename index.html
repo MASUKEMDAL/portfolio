@@ -1,566 +1,679 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfólio - Matheus Marques Ferreira</title>
     <!-- Link para a biblioteca Font Awesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            color: #e0e0e0; /* Cinza claro para o texto principal */
-            background-color: #1a1a1a; /* Fundo escuro */
-            line-height: 1.6;
-            position: relative;
-            min-height: 100vh;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        color: #e0e0e0; /* Cinza claro para o texto principal */
+        background-color: #1a1a1a; /* Fundo escuro */
+        line-height: 1.6;
+        position: relative;
+        min-height: 100vh;
+      }
 
-        header {
-            background-color: rgba(26, 26, 26, 0.9); /* Fundo do cabeçalho semi-transparente */
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra leve para o cabeçalho */
-        }
+      header {
+        background-color: rgba(
+          26,
+          26,
+          26,
+          0.9
+        ); /* Fundo do cabeçalho semi-transparente */
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra leve para o cabeçalho */
+      }
 
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .logo {
+        height: 60px; /* Ajuste a altura conforme necessário */
+        transition: transform 0.3s ease; /* Adicionando transição para a logo */
+      }
+
+      .logo:hover {
+        transform: scale(1.1); /* Aumenta o tamanho da logo ao passar o mouse */
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 0 15px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #e0e0e0; /* Cor dos links */
+        font-weight: bold;
+        transition: color 0.3s ease, transform 0.3s ease; /* Transição suave para cor e transformação */
+        position: relative;
+        padding-bottom: 5px; /* Espaço para o underline */
+      }
+
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: #00bcd4; /* Cor de destaque para o underline (um azul ciano) */
+        transition: width 0.3s ease; /* Transição para o underline */
+      }
+
+      nav ul li a:hover {
+        color: #ffffff; /* Cor do link ao passar o mouse */
+      }
+
+      nav ul li a:hover::after {
+        width: 100%; /* Expande o underline ao passar o mouse */
+      }
+
+      main {
+        padding-top: 100px; /* Espaço para o cabeçalho fixo */
+        padding-bottom: 80px; /* Espaço para o footer */
+      }
+
+      section {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #2a2a2a; /* Fundo das seções */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra para as seções */
+        opacity: 0; /* Inicialmente invisível para animação */
+        transform: translateY(20px); /* Inicialmente deslocado para baixo */
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transição para animação */
+      }
+
+      section.visible {
+        opacity: 1; /* Fica visível */
+        transform: translateY(0); /* Volta para a posição original */
+      }
+
+      /* Estilos para a nova seção Hero */
+      #hero {
+        text-align: center;
+        padding: 80px 20px;
+        background-color: #1a1a1a; /* Pode ser o mesmo fundo do body ou um pouco diferente */
+        border-radius: 0;
+        box-shadow: none;
+        opacity: 1; /* A seção hero já deve ser visível */
+        transform: translateY(0); /* Não aplica a animação de entrada */
+        margin-top: 0; /* Remove a margem superior padrão da section */
+        margin-bottom: 0; /* Remove a margem inferior padrão da section */
+        padding-top: calc(
+          100px + 80px
+        ); /* Ajusta o padding superior para considerar o cabeçalho fixo */
+      }
+
+      #hero h1 {
+        color: #ffffff; /* Cor do nome */
+        font-size: 2.8em; /* Tamanho do nome */
+        margin-bottom: 10px;
+        text-transform: none; /* Remove uppercase */
+        border-bottom: none; /* Remove a linha de baixo */
+        padding-bottom: 0; /* Remove padding */
+        letter-spacing: normal; /* Remove espaçamento entre letras */
+      }
+
+      #hero p {
+        color: #00bcd4; /* Cor da especialidade */
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        font-weight: bold; /* Deixa a especialidade em negrito */
+      }
+
+      #hero p:nth-of-type(2) {
+        /* Seleciona o segundo parágrafo */
+        color: #c0c0c0; /* Cor da frase de impacto */
+        font-size: 1em;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        font-weight: normal; /* Remove negrito */
+      }
+
+      #hero .botao {
+        margin: 0 10px; /* Espaçamento entre os botões */
+      }
+
+      h2 {
+        color: #00bcd4; /* Cor de destaque para os títulos */
+        margin-bottom: 25px;
+        border-bottom: 2px solid #4a4a4a; /* Linha divisória para os títulos */
+        padding-bottom: 10px;
+        text-transform: uppercase; /* Títulos em maiúsculas */
+        letter-spacing: 1px; /* Espaçamento entre letras */
+      }
+
+      p {
+        margin-bottom: 15px;
+        color: #c0c0c0; /* Cor do texto dos parágrafos */
+      }
+
+      /* Estilos específicos para a seção de Skills (com ícones) */
+      .skills-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Aumenta o espaçamento entre os ícones */
+        justify-content: center; /* Centraliza os ícones */
+      }
+
+      .skill-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #e0e0e0;
+        font-size: 0.8em;
+        transition: transform 0.3s ease; /* Animação ao passar o mouse */
+      }
+
+      .skill-item:hover {
+        transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+      }
+
+      .skill-item i {
+        font-size: 3em; /* Tamanho dos ícones */
+        margin-bottom: 5px;
+        color: #00bcd4; /* Cor dos ícones */
+        transition: color 0.3s ease; /* Transição de cor do ícone */
+      }
+
+      .skill-item:hover i {
+        color: #ffffff; /* Cor do ícone ao passar o mouse */
+      }
+
+      .skill-item span {
+        margin-top: 5px;
+        font-weight: bold;
+      }
+
+      /* Estilos específicos para a seção de Contato (com ícones) */
+      .contact-icons {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px; /* Espaçamento maior entre os ícones de contato */
+        justify-content: center; /* Centraliza os ícones */
+        margin-top: 30px; /* Espaço acima dos ícones */
+      }
+
+      .contact-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #e0e0e0;
+        font-size: 0.9em; /* Tamanho do texto dos ícones de contato */
+        transition: transform 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: scale(1.1);
+      }
+
+      .contact-item a {
+        text-decoration: none; /* Remove o underline dos links */
+        color: inherit; /* Herda a cor do elemento pai */
+        display: flex; /* Permite alinhar ícone e texto */
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-item i {
+        font-size: 3.5em; /* Tamanho dos ícones de contato */
+        margin-bottom: 8px;
+        color: #00bcd4; /* Cor dos ícones de contato */
+        transition: color 0.3s ease;
+      }
+
+      .contact-item:hover i {
+        color: #ffffff; /* Cor do ícone de contato ao passar o mouse */
+      }
+
+      .contact-item span {
+        margin-top: 5px;
+        font-weight: bold;
+      }
+
+      .projetos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px; /* Espaçamento entre os projetos */
+      }
+
+      .projeto {
+        background-color: #3a3a3a; /* Fundo dos cartões de projeto */
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Alinha conteúdo e botão */
+        border: 1px solid #4a4a4a; /* Borda sutil */
+      }
+
+      .projeto:hover {
+        transform: translateY(-5px); /* Efeito de levantar ao passar o mouse */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Sombra mais intensa ao passar o mouse */
+      }
+
+      .projeto h3 {
+        color: #ffffff; /* Cor do título do projeto */
+        margin-bottom: 10px;
+      }
+
+      .projeto p {
+        color: #c0c0c0; /* Cor do texto do projeto */
+        margin-bottom: 15px;
+        flex-grow: 1; /* Faz o parágrafo ocupar o espaço restante */
+      }
+
+      .botao {
+        display: inline-block;
+        background-color: #00bcd4; /* Cor de destaque para o botão */
+        color: #1a1a1a; /* Cor do texto do botão (escuro) */
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.1s ease; /* Transição para cor e transformação */
+        text-align: center;
+        border: none; /* Remove a borda padrão do botão */
+        cursor: pointer; /* Indica que é clicável */
+        font-weight: bold;
+      }
+
+      .botao:hover {
+        background-color: #00acc1; /* Cor do botão ao passar o mouse */
+      }
+
+      .botao:active {
+        transform: scale(0.98); /* Efeito de clique (diminui levemente) */
+      }
+
+      footer {
+        background-color: #1a1a1a; /* Fundo escuro para o footer */
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+        color: #808080; /* Cor do texto do footer */
+        border-top: 1px solid #2a2a2a; /* Borda superior sutil */
+      }
+
+      footer p {
+        margin: 5px 0;
+        font-size: 0.9em;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
         .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
+          flex-direction: column;
+          align-items: flex-start;
         }
-
-        .logo {
-            height: 60px; /* Ajuste a altura conforme necessário */
-            transition: transform 0.3s ease; /* Adicionando transição para a logo */
-        }
-
-        .logo:hover {
-            transform: scale(1.1); /* Aumenta o tamanho da logo ao passar o mouse */
-        }
-
 
         nav ul {
-            list-style: none;
-            display: flex;
+          margin-top: 15px;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #e0e0e0; /* Cor dos links */
-            font-weight: bold;
-            transition: color 0.3s ease, transform 0.3s ease; /* Transição suave para cor e transformação */
-            position: relative;
-            padding-bottom: 5px; /* Espaço para o underline */
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: #00bcd4; /* Cor de destaque para o underline (um azul ciano) */
-            transition: width 0.3s ease; /* Transição para o underline */
-        }
-
-        nav ul li a:hover {
-            color: #ffffff; /* Cor do link ao passar o mouse */
-        }
-
-        nav ul li a:hover::after {
-            width: 100%; /* Expande o underline ao passar o mouse */
+          margin: 5px 0;
         }
 
         main {
-            padding-top: 100px; /* Espaço para o cabeçalho fixo */
-            padding-bottom: 80px; /* Espaço para o footer */
+          padding-top: 150px; /* Ajusta o padding para o cabeçalho empilhado */
+        }
+
+        #hero {
+          padding-top: calc(
+            150px + 60px
+          ); /* Ajusta o padding superior para telas menores */
+        }
+
+        .projetos-container {
+          grid-template-columns: 1fr; /* Uma coluna em telas menores */
         }
 
         section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #2a2a2a; /* Fundo das seções */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra para as seções */
-            opacity: 0; /* Inicialmente invisível para animação */
-            transform: translateY(20px); /* Inicialmente deslocado para baixo */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transição para animação */
+          padding: 20px;
         }
 
-        section.visible {
-            opacity: 1; /* Fica visível */
-            transform: translateY(0); /* Volta para a posição original */
-        }
-
-        /* Estilos para a nova seção Hero */
-        #hero {
-            text-align: center;
-            padding: 80px 20px;
-            background-color: #1a1a1a; /* Pode ser o mesmo fundo do body ou um pouco diferente */
-            border-radius: 0;
-            box-shadow: none;
-            opacity: 1; /* A seção hero já deve ser visível */
-            transform: translateY(0); /* Não aplica a animação de entrada */
-            margin-top: 0; /* Remove a margem superior padrão da section */
-            margin-bottom: 0; /* Remove a margem inferior padrão da section */
-            padding-top: calc(100px + 80px); /* Ajusta o padding superior para considerar o cabeçalho fixo */
+        .skill-item i,
+        .contact-item i {
+          font-size: 2.5em; /* Ajusta o tamanho dos ícones em telas menores */
         }
 
         #hero h1 {
-            color: #ffffff; /* Cor do nome */
-            font-size: 2.8em; /* Tamanho do nome */
-            margin-bottom: 10px;
-            text-transform: none; /* Remove uppercase */
-            border-bottom: none; /* Remove a linha de baixo */
-            padding-bottom: 0; /* Remove padding */
-            letter-spacing: normal; /* Remove espaçamento entre letras */
+          font-size: 2em; /* Tamanho do nome em telas menores */
         }
 
         #hero p {
-            color: #00bcd4; /* Cor da especialidade */
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            font-weight: bold; /* Deixa a especialidade em negrito */
+          font-size: 1.2em; /* Tamanho da especialidade em telas menores */
         }
-
-        #hero p:nth-of-type(2) { /* Seleciona o segundo parágrafo */
-            color: #c0c0c0; /* Cor da frase de impacto */
-            font-size: 1em;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            font-weight: normal; /* Remove negrito */
-        }
-
-        #hero .botao {
-            margin: 0 10px; /* Espaçamento entre os botões */
-        }
-
-
-        h2 {
-            color: #00bcd4; /* Cor de destaque para os títulos */
-            margin-bottom: 25px;
-            border-bottom: 2px solid #4a4a4a; /* Linha divisória para os títulos */
-            padding-bottom: 10px;
-            text-transform: uppercase; /* Títulos em maiúsculas */
-            letter-spacing: 1px; /* Espaçamento entre letras */
-        }
-
-        p {
-            margin-bottom: 15px;
-            color: #c0c0c0; /* Cor do texto dos parágrafos */
-        }
-
-        /* Estilos específicos para a seção de Skills (com ícones) */
-        .skills-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px; /* Aumenta o espaçamento entre os ícones */
-            justify-content: center; /* Centraliza os ícones */
-        }
-
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: #e0e0e0;
-            font-size: 0.8em;
-            transition: transform 0.3s ease; /* Animação ao passar o mouse */
-        }
-
-        .skill-item:hover {
-            transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-        }
-
-        .skill-item i {
-            font-size: 3em; /* Tamanho dos ícones */
-            margin-bottom: 5px;
-            color: #00bcd4; /* Cor dos ícones */
-            transition: color 0.3s ease; /* Transição de cor do ícone */
-        }
-
-        .skill-item:hover i {
-            color: #ffffff; /* Cor do ícone ao passar o mouse */
-        }
-
-        .skill-item span {
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
-        /* Estilos específicos para a seção de Contato (com ícones) */
-        .contact-icons {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px; /* Espaçamento maior entre os ícones de contato */
-            justify-content: center; /* Centraliza os ícones */
-            margin-top: 30px; /* Espaço acima dos ícones */
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: #e0e0e0;
-            font-size: 0.9em; /* Tamanho do texto dos ícones de contato */
-            transition: transform 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: scale(1.1);
-        }
-
-        .contact-item a {
-            text-decoration: none; /* Remove o underline dos links */
-            color: inherit; /* Herda a cor do elemento pai */
-            display: flex; /* Permite alinhar ícone e texto */
-            flex-direction: column;
-            align-items: center;
-        }
-
-         .contact-item i {
-            font-size: 3.5em; /* Tamanho dos ícones de contato */
-            margin-bottom: 8px;
-            color: #00bcd4; /* Cor dos ícones de contato */
-            transition: color 0.3s ease;
-        }
-
-        .contact-item:hover i {
-            color: #ffffff; /* Cor do ícone de contato ao passar o mouse */
-        }
-
-        .contact-item span {
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
-
-        .projetos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px; /* Espaçamento entre os projetos */
-        }
-
-        .projeto {
-            background-color: #3a3a3a; /* Fundo dos cartões de projeto */
-            padding: 20px;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Alinha conteúdo e botão */
-            border: 1px solid #4a4a4a; /* Borda sutil */
-        }
-
-        .projeto:hover {
-            transform: translateY(-5px); /* Efeito de levantar ao passar o mouse */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Sombra mais intensa ao passar o mouse */
-        }
-
-        .projeto h3 {
-            color: #ffffff; /* Cor do título do projeto */
-            margin-bottom: 10px;
-        }
-
-        .projeto p {
-            color: #c0c0c0; /* Cor do texto do projeto */
-            margin-bottom: 15px;
-            flex-grow: 1; /* Faz o parágrafo ocupar o espaço restante */
-        }
-
-        .botao {
-            display: inline-block;
-            background-color: #00bcd4; /* Cor de destaque para o botão */
-            color: #1a1a1a; /* Cor do texto do botão (escuro) */
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.1s ease; /* Transição para cor e transformação */
-            text-align: center;
-            border: none; /* Remove a borda padrão do botão */
-            cursor: pointer; /* Indica que é clicável */
-            font-weight: bold;
-        }
-
-        .botao:hover {
-            background-color: #00acc1; /* Cor do botão ao passar o mouse */
-        }
-
-        .botao:active {
-            transform: scale(0.98); /* Efeito de clique (diminui levemente) */
-        }
-
-        footer {
-            background-color: #1a1a1a; /* Fundo escuro para o footer */
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-            color: #808080; /* Cor do texto do footer */
-            border-top: 1px solid #2a2a2a; /* Borda superior sutil */
-        }
-
-        footer p {
-            margin: 5px 0;
-            font-size: 0.9em;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            nav ul {
-                margin-top: 15px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            nav ul li {
-                margin: 5px 0;
-            }
-
-            main {
-                padding-top: 150px; /* Ajusta o padding para o cabeçalho empilhado */
-            }
-
-            #hero {
-                 padding-top: calc(150px + 60px); /* Ajusta o padding superior para telas menores */
-            }
-
-
-            .projetos-container {
-                 grid-template-columns: 1fr; /* Uma coluna em telas menores */
-            }
-
-            section {
-                padding: 20px;
-            }
-
-            .skill-item i, .contact-item i {
-                font-size: 2.5em; /* Ajusta o tamanho dos ícones em telas menores */
-            }
-
-            #hero h1 {
-                 font-size: 2em; /* Tamanho do nome em telas menores */
-            }
-
-            #hero p {
-                 font-size: 1.2em; /* Tamanho da especialidade em telas menores */
-            }
-        }
-
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="header-container">
-            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQE23i6VMO9f5A/company-logo_100_100/company-logo_100_100/0/1719503508041?e=1752105600&v=beta&t=QtgjflDavFdrejWllPYL7jD3U61baef7ngc59Eym8Qc" alt="Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="#contato">Contato</a></li> <!-- Contato agora é o primeiro item -->
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="header-container">
+        <img
+          src="https://media.licdn.com/dms/image/v2/D4D0BAQE23i6VMO9f5A/company-logo_100_100/company-logo_100_100/0/1719503508041?e=1752105600&v=beta&t=QtgjflDavFdrejWllPYL7jD3U61baef7ngc59Eym8Qc"
+          alt="Logo"
+          class="logo"
+        />
+        <nav>
+          <ul>
+            <li><a href="#contato">Contato</a></li>
+            <!-- Contato agora é o primeiro item -->
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main>
-        <!-- Nova Seção Hero -->
-        <section id="hero">
-            <h1>Matheus Marques Ferreira</h1>
-            <p>Desenvolvedor Full Stack</p>
-            <p>Criando soluções digitais robustas e intuitivas com paixão e precisão.</p>
-            <a href="#projetos" class="botao">Ver Projetos</a>
-            <a href="#contato" class="botao">Entre em Contato</a>
-        </section>
+      <!-- Nova Seção Hero -->
+      <section id="hero">
+        <h1>Matheus Marques Ferreira</h1>
+        <p>Desenvolvedor Full Stack</p>
+        <p>
+          Criando soluções digitais robustas e intuitivas com paixão e precisão.
+        </p>
+        <a href="#projetos" class="botao">Ver Projetos</a>
+        <a href="#contato" class="botao">Entre em Contato</a>
+      </section>
 
-         <section id="contato">
-            <h2>Contato</h2>
-            <p>Se você deseja me contratar, discutir um projeto ou apenas dizer olá, sinta-se à vontade para entrar em contato:</p>
-            <ul class="contact-icons">
-                <li class="contact-item">
-                    <a href="https://www.linkedin.com/in/masukemdal/" target="_blank"> <!-- Substitua SEU_PERFIL_LINKEDIN pelo seu link do LinkedIn -->
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                </li>
-                <li class="contact-item">
-                    <a href="https://api.whatsapp.com/send?phone=5534998829396" target="_blank"> <!-- Substitua 5534998829396 pelo seu número com código do país e DDD -->
-                         <i class="fab fa-whatsapp-square"></i>
-                        <span>WhatsApp</span>
-                    </a>
-                </li>
-                <li class="contact-item">
-                    <a href="https://github.com/masukemdal" target="_blank"> <!-- Substitua SEU_PERFIL_GITHUB pelo seu link do GitHub -->
-                        <i class="fab fa-github-square"></i>
-                        <span>GitHub</span>
-                    </a>
-                </li>
-                <li class="contact-item">
-                    <a href="mailto:matheusmarferreira@hotmail.com"> <!-- Substitua matheusmarferreira@hotmail.com pelo seu email -->
-                        <i class="fas fa-envelope-square"></i>
-                        <span>Email</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
+      <section id="contato">
+        <h2>Contato</h2>
+        <p>
+          Se você deseja me contratar, discutir um projeto ou apenas dizer olá,
+          sinta-se à vontade para entrar em contato:
+        </p>
+        <ul class="contact-icons">
+          <li class="contact-item">
+            <a href="https://www.linkedin.com/in/masukemdal/" target="_blank">
+              <!-- Substitua SEU_PERFIL_LINKEDIN pelo seu link do LinkedIn -->
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li class="contact-item">
+            <a
+              href="https://api.whatsapp.com/send?phone=5534998829396"
+              target="_blank"
+            >
+              <!-- Substitua 5534998829396 pelo seu número com código do país e DDD -->
+              <i class="fab fa-whatsapp-square"></i>
+              <span>WhatsApp</span>
+            </a>
+          </li>
+          <li class="contact-item">
+            <a href="https://github.com/masukemdal" target="_blank">
+              <!-- Substitua SEU_PERFIL_GITHUB pelo seu link do GitHub -->
+              <i class="fab fa-github-square"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li class="contact-item">
+            <a href="mailto:matheusmarferreira@hotmail.com">
+              <!-- Substitua matheusmarferreira@hotmail.com pelo seu email -->
+              <i class="fas fa-envelope-square"></i>
+              <span>Email</span>
+            </a>
+          </li>
+        </ul>
+      </section>
 
-        <section id="sobre">
-            <h2>Sobre Mim</h2>
-            <p>Olá, sou Matheus Marques Ferreira, um desenvolvedor Full Stack apaixonado por criar experiências digitais que impactam. Com uma base forte em tecnologias web e um olhar atento para o design, busco a excelência em cada projeto que realizo.</p>
-            <p>Minha jornada na área de desenvolvimento começou com a curiosidade de entender como as coisas funcionam por trás das telas. Desde então, tenho me dedicado a aprender e aplicar as melhores práticas para construir soluções robustas e intuitivas.</p>
-            <p>Acredito que a tecnologia tem o poder de transformar, e meu objetivo é utilizar minhas habilidades para contribuir com projetos que façam a diferença.</p>
-        </section>
+      <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <p>
+          Olá, sou Matheus Marques Ferreira, um desenvolvedor Full Stack
+          apaixonado por criar experiências digitais que impactam. Com uma base
+          forte em tecnologias web e um olhar atento para o design, busco a
+          excelência em cada projeto que realizo.
+        </p>
+        <p>
+          Minha jornada na área de desenvolvimento começou com a curiosidade de
+          entender como as coisas funcionam por trás das telas. Desde então,
+          tenho me dedicado a aprender e aplicar as melhores práticas para
+          construir soluções robustas e intuitivas.
+        </p>
+        <p>
+          Acredito que a tecnologia tem o poder de transformar, e meu objetivo é
+          utilizar minhas habilidades para contribuir com projetos que façam a
+          diferença.
+        </p>
+      </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <p>Minhas principais habilidades incluem:</p>
-            <ul class="skills-list">
-                <li class="skill-item">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML5</span>
-                </li>
-                <li class="skill-item">
-                    <i class="fab fa-css3-alt"></i>
-                    <span>CSS3</span>
-                </li>
-                <li class="skill-item">
-                    <i class="fab fa-js-square"></i>
-                    <span>JavaScript</span>
-                </li>
-                <li class="skill-item">
-                    <i class="fab fa-react"></i>
-                    <span>React</span>
-                </li>
-                <li class="skill-item">
-                    <i class="fab fa-node-js"></i>
-                    <span>Node.js</span>
-                </li>
-                <li class="skill-item">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                </li>
-                <li class="skill-item">
-                    <i class="fas fa-database"></i> <!-- Ícone genérico para Banco de Dados/SQL -->
-                    <span>SQL</span>
-                </li>
-                 <li class="skill-item">
-                    <i class="fab fa-git-alt"></i>
-                    <span>Git</span>
-                </li>
-                <!-- Adicione mais skills e seus ícones Font Awesome correspondentes -->
-                 <li class="skill-item">
-                    <i class="fas fa-cogs"></i> <!-- Ícone para Metodologias Ágeis -->
-                    <span>Ágeis</span>
-                </li>
-                 <li class="skill-item">
-                    <i class="fas fa-mobile-alt"></i> <!-- Ícone para Responsivo -->
-                    <span>Responsivo</span>
-                </li>
-                 <li class="skill-item">
-                    <i class="fas fa-palette"></i> <!-- Ícone para UX/UI -->
-                    <span>UX/UI</span>
-                </li>
-            </ul>
-        </section>
+      <section id="skills">
+        <h2>Skills</h2>
+        <p>Minhas principais habilidades incluem:</p>
+        <ul class="skills-list">
+          <li class="skill-item">
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+          </li>
+          <li class="skill-item">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS3</span>
+          </li>
+          <li class="skill-item">
+            <i class="fab fa-js-square"></i>
+            <span>JavaScript</span>
+          </li>
+          <li class="skill-item">
+            <i class="fab fa-react"></i>
+            <span>React</span>
+          </li>
+          <li class="skill-item">
+            <i class="fab fa-node-js"></i>
+            <span>Node.js</span>
+          </li>
+          <li class="skill-item">
+            <i class="fab fa-python"></i>
+            <span>Python</span>
+          </li>
+          <li class="skill-item">
+            <i class="fas fa-database"></i>
+            <!-- Ícone genérico para Banco de Dados/SQL -->
+            <span>SQL</span>
+          </li>
+          <li class="skill-item">
+            <i class="fab fa-git-alt"></i>
+            <span>Git</span>
+          </li>
+          <!-- Adicione mais skills e seus ícones Font Awesome correspondentes -->
+          <li class="skill-item">
+            <i class="fas fa-cogs"></i>
+            <!-- Ícone para Metodologias Ágeis -->
+            <span>Ágeis</span>
+          </li>
+          <li class="skill-item">
+            <i class="fas fa-mobile-alt"></i>
+            <!-- Ícone para Responsivo -->
+            <span>Responsivo</span>
+          </li>
+          <li class="skill-item">
+            <i class="fas fa-palette"></i>
+            <!-- Ícone para UX/UI -->
+            <span>UX/UI</span>
+          </li>
+        </ul>
+      </section>
 
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <div class="projetos-container">
-                <div class="projeto">
-                    <h3>Ferramentas para Gestão</h3>
-                    <p>Uma ferramenta destinada a melhorar o gerenciamento de equipes e tarefas, facilitando a colaboração e a produtividade.</p>
-                    <a href="Analise de Perfil.HTML" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Ferramenta de Ponto</h3>
-                    <p>Um aplicativo que permite registrar e gerenciar horários de entrada e saída de funcionários.</p>
-                    <a href="Controle de Ponto.HTML" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Simulador de Máquina</h3>
-                    <p>Simulador interativo que demonstra as funcionalidades de uma máquina específica, ajudando no aprendizado e treinamento.</p>
-                    <a href="Simulator POS.html" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Ferramenta para Cronograma de Treinamentos</h3>
-                    <p>Uma plataforma que permite criar e gerenciar cronogramas de treinamentos de maneira simples e intuitiva.</p>
-                    <a href="testecronograma.html" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Site Profissional</h3>
-                    <p>Website criado para apresentar portfólios e serviços de profissionais de diversas áreas.</p>
-                    <a href="Site MDAL atualizado.html" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Site de Mangá</h3>
-                    <p>Uma plataforma online para leitura e compartilhamento de mangás com uma comunidade de fãs.</p>
-                    <a href="Manga Masuke.html" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Material de Apoio para Empresas</h3>
-                    <p>Recursos e ferramentas criadas para auxiliar empresas na formação e desenvolvimento de seus colaboradores.</p>
-                    <a href="Material De Apoio.html" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto">
-                    <h3>Ferramenta de Pesquisa de Clientes</h3>
-                    <p>Uma solução que coleta dados e feedbacks de clientes para melhorar produtos e serviços.</p>
-                    <a href="Busca ValeCard.HTML" class="botao" target="_blank">Ver Projeto</a>
-                </div>
-            </div>
-        </section>
+      <section id="projetos">
+        <h2>Projetos</h2>
+        <div class="projetos-container">
+          <div class="projeto">
+            <h3>PokéDex</h3>
+            <p>
+              Uma Pokedex para você pesquisar pokemons e ver todas as
+              caracteristicas, evoluções e status.
+            </p>
+            <a
+              href="https://masukemdal.github.io/pokedex/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Digivice</h3>
+            <p>
+              Esse aqui é só pra quem é NOSTALGICO, um Digivice totalmente
+              funcional para comparar DIGIMONS!!
+            </p>
+            <a
+              href="https://masukemdal.github.io/digivice/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Simulador de Máquina</h3>
+            <p>
+              Simulador interativo que demonstra as funcionalidades de uma
+              máquina específica, ajudando no aprendizado e treinamento.
+            </p>
+            <a
+              href="https://masukemdal.github.io/simulador.de.pos/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Ferramenta para Cronograma de Treinamentos</h3>
+            <p>
+              Uma plataforma que permite criar e gerenciar cronogramas de
+              treinamentos de maneira simples e intuitiva.
+            </p>
+            <a
+              href="https://masukemdal.github.io/cronograma.universidade/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Site Profissional da MDAL</h3>
+            <p>
+              Website criado para apresentar portfólios e serviços de
+              profissionais de diversas áreas.
+            </p>
+            <a
+              href="https://masukemdal.github.io/SiteMDAL/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Site de Mangá</h3>
+            <p>
+              Uma plataforma online para leitura e compartilhamento de mangás
+              com uma comunidade de fãs.
+            </p>
+            <a
+              href="https://masukemdal.github.io/MangaMDAL/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Site Profissional da 2EHTreinamentos</h3>
+            <p>
+              Recursos e ferramentas criadas para auxiliar empresas na formação
+              e desenvolvimento de seus colaboradores.
+            </p>
+            <a
+              href="https://masukemdal.github.io/2EHCTreinamentos/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+          <div class="projeto">
+            <h3>Material de apoio Santander</h3>
+            <p>
+              Um Material de apoio para empresas passarem para seus
+              colaboradores, contendo: sugestão de scripts, simulador de APP,
+              E-mail, e da propria GETNET a máquina de cartões, além do material
+              de apoio que o Banco disponibiliza.
+            </p>
+            <a
+              href="https://masukemdal.github.io/SantanderWiki/"
+              class="botao"
+              target="_blank"
+              >Ver Projeto</a
+            >
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <p>© 2023 MDAL - Todos os direitos reservados.</p>
-        <p>Desenvolvido por Matheus Marques Ferreira</p>
+      <p>© 2022 MDAL - Todos os direitos reservados.</p>
+      <p>Desenvolvido por Matheus Marques Ferreira</p>
     </footer>
 
     <script>
-        // Script para adicionar a classe 'visible' quando a seção entra na viewport
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('main section:not(#hero)'); // Seleciona todas as sections dentro de main, exceto a hero
+      // Script para adicionar a classe 'visible' quando a seção entra na viewport
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("main section:not(#hero)"); // Seleciona todas as sections dentro de main, exceto a hero
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Opcional: Para que a animação só aconteça uma vez
-                    }
-                });
-            }, {
-                threshold: 0.1 // Aciona quando 10% da seção está visível
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // Opcional: Para que a animação só aconteça uma vez
+              }
             });
+          },
+          {
+            threshold: 0.1, // Aciona quando 10% da seção está visível
+          }
+        );
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+        sections.forEach((section) => {
+          observer.observe(section);
         });
+      });
     </script>
-</body>
+  </body>
 </html>
