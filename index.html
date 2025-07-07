@@ -3,716 +3,615 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfólio - Matheus Marques Ferreira</title>
-    <!-- Link para a biblioteca Font Awesome para ícones -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Arial", sans-serif;
-        color: #e0e0e0; /* Cinza claro para o texto principal */
-        background-color: #1a1a1a; /* Fundo escuro */
-        line-height: 1.6;
-        position: relative;
-        min-height: 100vh;
-      }
-
-      header {
-        background-color: rgba(
-          26,
-          26,
-          26,
-          0.9
-        ); /* Fundo do cabeçalho semi-transparente */
-        padding: 15px 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 10;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra leve para o cabeçalho */
-      }
-
-      .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: auto;
-        padding: 0 20px;
-      }
-
-      .logo {
-        height: 60px; /* Ajuste a altura conforme necessário */
-        transition: transform 0.3s ease; /* Adicionando transição para a logo */
-      }
-
-      .logo:hover {
-        transform: scale(1.1); /* Aumenta o tamanho da logo ao passar o mouse */
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-      }
-
-      nav ul li {
-        margin: 0 15px;
-      }
-
-      nav ul li a {
-        text-decoration: none;
-        color: #e0e0e0; /* Cor dos links */
-        font-weight: bold;
-        transition: color 0.3s ease, transform 0.3s ease; /* Transição suave para cor e transformação */
-        position: relative;
-        padding-bottom: 5px; /* Espaço para o underline */
-      }
-
-      nav ul li a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 2px;
-        background-color: #00bcd4; /* Cor de destaque para o underline (um azul ciano) */
-        transition: width 0.3s ease; /* Transição para o underline */
-      }
-
-      nav ul li a:hover {
-        color: #ffffff; /* Cor do link ao passar o mouse */
-      }
-
-      nav ul li a:hover::after {
-        width: 100%; /* Expande o underline ao passar o mouse */
-      }
-
-      main {
-        padding-top: 100px; /* Espaço para o cabeçalho fixo */
-        padding-bottom: 80px; /* Espaço para o footer */
-      }
-
-      section {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 30px;
-        background-color: #2a2a2a; /* Fundo das seções */
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra para as seções */
-        opacity: 0; /* Inicialmente invisível para animação */
-        transform: translateY(20px); /* Inicialmente deslocado para baixo */
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transição para animação */
-      }
-
-      section.visible {
-        opacity: 1; /* Fica visível */
-        transform: translateY(0); /* Volta para a posição original */
-      }
-
-      /* Estilos para a nova seção Hero */
-      #hero {
-        text-align: center;
-        padding: 80px 20px;
-        background-color: #1a1a1a; /* Pode ser o mesmo fundo do body ou um pouco diferente */
-        border-radius: 0;
-        box-shadow: none;
-        opacity: 1; /* A seção hero já deve ser visível */
-        transform: translateY(0); /* Não aplica a animação de entrada */
-        margin-top: 0; /* Remove a margem superior padrão da section */
-        margin-bottom: 0; /* Remove a margem inferior padrão da section */
-        padding-top: calc(
-          100px + 80px
-        ); /* Ajusta o padding superior para considerar o cabeçalho fixo */
-      }
-
-      #hero h1 {
-        color: #ffffff; /* Cor do nome */
-        font-size: 2.8em; /* Tamanho do nome */
-        margin-bottom: 10px;
-        text-transform: none; /* Remove uppercase */
-        border-bottom: none; /* Remove a linha de baixo */
-        padding-bottom: 0; /* Remove padding */
-        letter-spacing: normal; /* Remove espaçamento entre letras */
-      }
-
-      #hero p {
-        color: #00bcd4; /* Cor da especialidade */
-        font-size: 1.5em;
-        margin-bottom: 20px;
-        font-weight: bold; /* Deixa a especialidade em negrito */
-      }
-
-      #hero p:nth-of-type(2) {
-        /* Seleciona o segundo parágrafo */
-        color: #c0c0c0; /* Cor da frase de impacto */
-        font-size: 1em;
-        max-width: 700px;
-        margin: 0 auto 30px;
-        font-weight: normal; /* Remove negrito */
-      }
-
-      #hero .botao {
-        margin: 0 10px; /* Espaçamento entre os botões */
-      }
-
-      h2 {
-        color: #00bcd4; /* Cor de destaque para os títulos */
-        margin-bottom: 25px;
-        border-bottom: 2px solid #4a4a4a; /* Linha divisória para os títulos */
-        padding-bottom: 10px;
-        text-transform: uppercase; /* Títulos em maiúsculas */
-        letter-spacing: 1px; /* Espaçamento entre letras */
-      }
-
-      p {
-        margin-bottom: 15px;
-        color: #c0c0c0; /* Cor do texto dos parágrafos */
-      }
-
-      /* Estilos específicos para a seção de Skills (com ícones) */
-      .skills-list {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px; /* Aumenta o espaçamento entre os ícones */
-        justify-content: center; /* Centraliza os ícones */
-      }
-
-      .skill-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        color: #e0e0e0;
-        font-size: 0.8em;
-        transition: transform 0.3s ease; /* Animação ao passar o mouse */
-      }
-
-      .skill-item:hover {
-        transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-      }
-
-      .skill-item i {
-        font-size: 3em; /* Tamanho dos ícones */
-        margin-bottom: 5px;
-        color: #00bcd4; /* Cor dos ícones */
-        transition: color 0.3s ease; /* Transição de cor do ícone */
-      }
-
-      .skill-item:hover i {
-        color: #ffffff; /* Cor do ícone ao passar o mouse */
-      }
-
-      .skill-item span {
-        margin-top: 5px;
-        font-weight: bold;
-      }
-
-      /* Estilos específicos para a seção de Contato (com ícones) */
-      .contact-icons {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px; /* Espaçamento maior entre os ícones de contato */
-        justify-content: center; /* Centraliza os ícones */
-        margin-top: 30px; /* Espaço acima dos ícones */
-      }
-
-      .contact-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        color: #e0e0e0;
-        font-size: 0.9em; /* Tamanho do texto dos ícones de contato */
-        transition: transform 0.3s ease;
-      }
-
-      .contact-item:hover {
-        transform: scale(1.1);
-      }
-
-      .contact-item a {
-        text-decoration: none; /* Remove o underline dos links */
-        color: inherit; /* Herda a cor do elemento pai */
-        display: flex; /* Permite alinhar ícone e texto */
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .contact-item i {
-        font-size: 3.5em; /* Tamanho dos ícones de contato */
-        margin-bottom: 8px;
-        color: #00bcd4; /* Cor dos ícones de contato */
-        transition: color 0.3s ease;
-      }
-
-      .contact-item:hover i {
-        color: #ffffff; /* Cor do ícone de contato ao passar o mouse */
-      }
-
-      .contact-item span {
-        margin-top: 5px;
-        font-weight: bold;
-      }
-
-      .projetos-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px; /* Espaçamento entre os projetos */
-      }
-
-      .projeto {
-        background-color: #3a3a3a; /* Fundo dos cartões de projeto */
-        padding: 20px;
-        border-radius: 8px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Alinha conteúdo e botão */
-        border: 1px solid #4a4a4a; /* Borda sutil */
-      }
-
-      .projeto:hover {
-        transform: translateY(-5px); /* Efeito de levantar ao passar o mouse */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Sombra mais intensa ao passar o mouse */
-      }
-
-      .projeto h3 {
-        color: #ffffff; /* Cor do título do projeto */
-        margin-bottom: 10px;
-      }
-
-      .projeto p {
-        color: #c0c0c0; /* Cor do texto do projeto */
-        margin-bottom: 15px;
-        flex-grow: 1; /* Faz o parágrafo ocupar o espaço restante */
-      }
-
-      .botao {
-        display: inline-block;
-        background-color: #00bcd4; /* Cor de destaque para o botão */
-        color: #1a1a1a; /* Cor do texto do botão (escuro) */
-        padding: 12px 25px;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease, transform 0.1s ease; /* Transição para cor e transformação */
-        text-align: center;
-        border: none; /* Remove a borda padrão do botão */
-        cursor: pointer; /* Indica que é clicável */
-        font-weight: bold;
-      }
-
-      .botao:hover {
-        background-color: #00acc1; /* Cor do botão ao passar o mouse */
-      }
-
-      .botao:active {
-        transform: scale(0.98); /* Efeito de clique (diminui levemente) */
-      }
-
-      footer {
-        background-color: #1a1a1a; /* Fundo escuro para o footer */
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 50px;
-        color: #808080; /* Cor do texto do footer */
-        border-top: 1px solid #2a2a2a; /* Borda superior sutil */
-      }
-
-      footer p {
-        margin: 5px 0;
-        font-size: 0.9em;
-      }
-
-      /* Responsividade */
-      @media (max-width: 768px) {
-        .header-container {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        nav ul {
-          margin-top: 15px;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        nav ul li {
-          margin: 5px 0;
-        }
-
-        main {
-          padding-top: 150px; /* Ajusta o padding para o cabeçalho empilhado */
-        }
-
-        #hero {
-          padding-top: calc(
-            150px + 60px
-          ); /* Ajusta o padding superior para telas menores */
-        }
-
-        .projetos-container {
-          grid-template-columns: 1fr; /* Uma coluna em telas menores */
-        }
-
-        section {
-          padding: 20px;
-        }
-
-        .skill-item i,
-        .contact-item i {
-          font-size: 2.5em; /* Ajusta o tamanho dos ícones em telas menores */
-        }
-
-        #hero h1 {
-          font-size: 2em; /* Tamanho do nome em telas menores */
-        }
-
-        #hero p {
-          font-size: 1.2em; /* Tamanho da especialidade em telas menores */
-        }
-      }
-    </style>
+    <title>Matheus Marques Ferreira | Desenvolvedor Full Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <header>
-      <div class="header-container">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D4D0BAQE23i6VMO9f5A/company-logo_100_100/company-logo_100_100/0/1719503508041?e=1752105600&v=beta&t=QtgjflDavFdrejWllPYL7jD3U61baef7ngc59Eym8Qc"
-          alt="Logo"
-          class="logo"
-        />
-        <nav>
-          <ul>
-            <li><a href="#contato">Contato</a></li>
-            <!-- Contato agora é o primeiro item -->
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projetos">Projetos</a></li>
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Partículas de fundo -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="nav-container">
+          <div class="nav-logo">
+            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQE23i6VMO9f5A/company-logo_100_100/company-logo_100_100/0/1719503508041?e=1752105600&v=beta&t=QtgjflDavFdrejWllPYL7jD3U61baef7ngc59Eym8Qc" alt="MDAL Logo" class="logo">
+            <span class="logo-text">MDAL</span>
+          </div>
+          
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Início</a></li>
+            <li><a href="#about" class="nav-link">Sobre</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projetos</a></li>
+            <li><a href="#contact" class="nav-link">Contato</a></li>
           </ul>
-        </nav>
-      </div>
-    </header>
 
-    <main>
-      <!-- Nova Seção Hero -->
-      <section id="hero">
-        <h1>Matheus Marques Ferreira</h1>
-        <p>Desenvolvedor Full Stack</p>
-        <p>
-          Criando soluções digitais robustas e intuitivas com paixão e precisão.
-        </p>
-        <a href="#projetos" class="botao">Ver Projetos</a>
-        <a href="#contato" class="botao">Entre em Contato</a>
-      </section>
-
-      <section id="contato">
-        <h2>Contato</h2>
-        <p>
-          Se você deseja me contratar, discutir um projeto ou apenas dizer olá,
-          sinta-se à vontade para entrar em contato:
-        </p>
-        <ul class="contact-icons">
-          <li class="contact-item">
-            <a href="https://www.linkedin.com/in/masukemdal/" target="_blank">
-              <!-- Substitua SEU_PERFIL_LINKEDIN pelo seu link do LinkedIn -->
-              <i class="fab fa-linkedin"></i>
-              <span>LinkedIn</span>
-            </a>
-          </li>
-          <li class="contact-item">
-            <a
-              href="https://api.whatsapp.com/send?phone=5534998829396"
-              target="_blank"
-            >
-              <!-- Substitua 5534998829396 pelo seu número com código do país e DDD -->
-              <i class="fab fa-whatsapp-square"></i>
-              <span>WhatsApp</span>
-            </a>
-          </li>
-          <li class="contact-item">
-            <a href="https://github.com/masukemdal" target="_blank">
-              <!-- Substitua SEU_PERFIL_GITHUB pelo seu link do GitHub -->
-              <i class="fab fa-github-square"></i>
-              <span>GitHub</span>
-            </a>
-          </li>
-          <li class="contact-item">
-            <a href="mailto:matheusmarferreira@hotmail.com">
-              <!-- Substitua matheusmarferreira@hotmail.com pelo seu email -->
-              <i class="fas fa-envelope-square"></i>
-              <span>Email</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section id="sobre">
-        <h2>Sobre Mim</h2>
-        <p>
-          Olá, sou Matheus Marques Ferreira, um desenvolvedor Full Stack
-          apaixonado por criar experiências digitais que impactam. Com uma base
-          forte em tecnologias web e um olhar atento para o design, busco a
-          excelência em cada projeto que realizo.
-        </p>
-        <p>
-          Minha jornada na área de desenvolvimento começou com a curiosidade de
-          entender como as coisas funcionam por trás das telas. Desde então,
-          tenho me dedicado a aprender e aplicar as melhores práticas para
-          construir soluções robustas e intuitivas.
-        </p>
-        <p>
-          Acredito que a tecnologia tem o poder de transformar, e meu objetivo é
-          utilizar minhas habilidades para contribuir com projetos que façam a
-          diferença.
-        </p>
-      </section>
-
-      <section id="skills">
-        <h2>Skills</h2>
-        <p>Minhas principais habilidades incluem:</p>
-        <ul class="skills-list">
-          <li class="skill-item">
-            <i class="fab fa-html5"></i>
-            <span>HTML5</span>
-          </li>
-          <li class="skill-item">
-            <i class="fab fa-css3-alt"></i>
-            <span>CSS3</span>
-          </li>
-          <li class="skill-item">
-            <i class="fab fa-js-square"></i>
-            <span>JavaScript</span>
-          </li>
-          <li class="skill-item">
-            <i class="fab fa-react"></i>
-            <span>React</span>
-          </li>
-          <li class="skill-item">
-            <i class="fab fa-node-js"></i>
-            <span>Node.js</span>
-          </li>
-          <li class="skill-item">
-            <i class="fab fa-python"></i>
-            <span>Python</span>
-          </li>
-          <li class="skill-item">
-            <i class="fas fa-database"></i>
-            <!-- Ícone genérico para Banco de Dados/SQL -->
-            <span>SQL</span>
-          </li>
-          <li class="skill-item">
-            <i class="fab fa-git-alt"></i>
-            <span>Git</span>
-          </li>
-          <!-- Adicione mais skills e seus ícones Font Awesome correspondentes -->
-          <li class="skill-item">
-            <i class="fas fa-cogs"></i>
-            <!-- Ícone para Metodologias Ágeis -->
-            <span>Ágeis</span>
-          </li>
-          <li class="skill-item">
-            <i class="fas fa-mobile-alt"></i>
-            <!-- Ícone para Responsivo -->
-            <span>Responsivo</span>
-          </li>
-          <li class="skill-item">
-            <i class="fas fa-palette"></i>
-            <!-- Ícone para UX/UI -->
-            <span>UX/UI</span>
-          </li>
-        </ul>
-      </section>
-
-      <section id="projetos">
-        <h2>Projetos</h2>
-        <div class="projetos-container">
-          <div class="projeto">
-            <h3>PokéDex</h3>
-            <p>
-              Uma Pokedex para você pesquisar pokemons e ver todas as
-              caracteristicas, evoluções e status.
-            </p>
-            <a
-              href="https://masukemdal.github.io/pokedex/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Digivice</h3>
-            <p>
-              Esse aqui é só pra quem é NOSTALGICO, um Digivice totalmente
-              funcional para comparar DIGIMONS!!
-            </p>
-            <a
-              href="https://masukemdal.github.io/digivice/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Simulador de Máquina</h3>
-            <p>
-              Simulador interativo que demonstra as funcionalidades de uma
-              máquina específica, ajudando no aprendizado e treinamento.
-            </p>
-            <a
-              href="https://masukemdal.github.io/simulador.de.pos/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Ferramenta para Cronograma de Treinamentos</h3>
-            <p>
-              Uma plataforma que permite criar e gerenciar cronogramas de
-              treinamentos de maneira simples e intuitiva.
-            </p>
-            <a
-              href="https://masukemdal.github.io/cronograma.universidade/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Site Profissional da MDAL</h3>
-            <p>
-              Website criado para apresentar portfólios e serviços de
-              profissionais de diversas áreas.
-            </p>
-            <a
-              href="https://masukemdal.github.io/SiteMDAL/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Site de Mangá</h3>
-            <p>
-              Uma plataforma online para leitura e compartilhamento de mangás
-              com uma comunidade de fãs.
-            </p>
-            <a
-              href="https://masukemdal.github.io/MangaMDAL/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Site Profissional da 2EHTreinamentos</h3>
-            <p>
-              Recursos e ferramentas criadas para auxiliar empresas na formação
-              e desenvolvimento de seus colaboradores.
-            </p>
-            <a
-              href="https://masukemdal.github.io/2EHCTreinamentos/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Material de apoio Santander</h3>
-            <p>
-              Um Material de apoio para empresas passarem para seus
-              colaboradores, contendo: sugestão de scripts, simulador de APP,
-              E-mail, e da propria GETNET a máquina de cartões, além do material
-              de apoio que o Banco disponibiliza.
-            </p>
-            <a
-              href="https://masukemdal.github.io/SantanderWiki/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Site Profissional da MDALHamburgueria</h3>
-            <p>
-              Cardápio Digital da MDAL Hamburgueria! Um sistema completo e
-              responsivo para apresentação dos produtos da hamburgueria, com
-              categorias, carrinho de compras e pedido via WhatsApp integrado.
-            </p>
-            <a
-              href="https://masukemdal.github.io/mdalburguer/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>Site Profissional da BeerBZ</h3>
-            <p>Cardápio Digital da BeerBZ para Amantes de Chopp.</p>
-            <a
-              href="https://masukemdal.github.io/beerbz/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
-          </div>
-          <div class="projeto">
-            <h3>CubeMagic</h3>
-            <p>
-              Cubo Mágico 3D Funcional! Este é um simulador interativo de Cubo
-              de Rubik desenvolvido com HTML, CSS e JavaScript puro. O projeto
-              permite rotacionar o cubo tanto com os botões quanto com o
-              teclado, além de realizar os movimentos clássicos do cubo mágico!
-            </p>
-            <a
-              href="https://masukemdal.github.io/cubemagic/"
-              class="botao"
-              target="_blank"
-              >Ver Projeto</a
-            >
+          <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
-      </section>
-    </main>
+      </nav>
+    </header>
 
-    <footer>
-      <p>© 2022 MDAL - Todos os direitos reservados.</p>
-      <p>Desenvolvido por Matheus Marques Ferreira</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="hero-greeting">Olá, eu sou</span>
+            <h1 class="hero-name">
+              <span class="text-gradient">Matheus Marques</span>
+              <span class="text-gradient">Ferreira</span>
+            </h1>
+            <h2 class="hero-title">Desenvolvedor Full Stack</h2>
+            <p class="hero-description">
+              Transformo ideias em experiências digitais extraordinárias. 
+              Especializado em criar soluções robustas e intuitivas que 
+              impactam negócios e encantam usuários.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Projetos</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Anos</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Dedicação</span>
+              </div>
+            </div>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">
+                <span>Ver Projetos</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                <span>Vamos Conversar</span>
+                <i class="fas fa-comments"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-avatar">
+              <div class="avatar-ring"></div>
+              <div class="avatar-content">
+                <i class="fas fa-code"></i>
+              </div>
+            </div>
+            <div class="floating-elements">
+              <div class="floating-element" data-tech="React">
+                <i class="fab fa-react"></i>
+              </div>
+              <div class="floating-element" data-tech="Node.js">
+                <i class="fab fa-node-js"></i>
+              </div>
+              <div class="floating-element" data-tech="JavaScript">
+                <i class="fab fa-js-square"></i>
+              </div>
+              <div class="floating-element" data-tech="Python">
+                <i class="fab fa-python"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <span>Role para baixo</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Conheça mais</span>
+          <h2 class="section-title">Sobre Mim</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p class="about-intro">
+              Sou um desenvolvedor Full Stack apaixonado por criar experiências 
+              digitais que fazem a diferença. Com uma base sólida em tecnologias 
+              modernas e um olhar atento para detalhes, transformo ideias complexas 
+              em soluções elegantes e funcionais.
+            </p>
+            <div class="about-highlights">
+              <div class="highlight">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                  <h4>Inovação</h4>
+                  <p>Sempre buscando as melhores práticas e tecnologias emergentes</p>
+                </div>
+              </div>
+              <div class="highlight">
+                <i class="fas fa-users"></i>
+                <div>
+                  <h4>Colaboração</h4>
+                  <p>Trabalho em equipe e comunicação eficaz são fundamentais</p>
+                </div>
+              </div>
+              <div class="highlight">
+                <i class="fas fa-rocket"></i>
+                <div>
+                  <h4>Performance</h4>
+                  <p>Código limpo, otimizado e focado na experiência do usuário</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-visual">
+            <div class="experience-card">
+              <div class="card-header">
+                <i class="fas fa-briefcase"></i>
+                <h3>Experiência</h3>
+              </div>
+              <div class="experience-list">
+                <div class="experience-item">
+                  <span class="year">2021-2024</span>
+                  <div class="experience-details">
+                    <h4>Desenvolvedor Full Stack</h4>
+                    <p>Projetos diversos e freelances</p>
+                  </div>
+                </div>
+                <div class="experience-item">
+                  <span class="year">2020-2021</span>
+                  <div class="experience-details">
+                    <h4>Desenvolvedor Frontend</h4>
+                    <p>Foco em interfaces modernas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Minhas competências</span>
+          <h2 class="section-title">Skills & Tecnologias</h2>
+        </div>
+        <div class="skills-content">
+          <div class="skills-categories">
+            <div class="skill-category">
+              <h3>Frontend</h3>
+              <div class="skills-grid">
+                <div class="skill-item" data-level="95">
+                  <div class="skill-icon">
+                    <i class="fab fa-html5"></i>
+                  </div>
+                  <span class="skill-name">HTML5</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="90">
+                  <div class="skill-icon">
+                    <i class="fab fa-css3-alt"></i>
+                  </div>
+                  <span class="skill-name">CSS3</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="88">
+                  <div class="skill-icon">
+                    <i class="fab fa-js-square"></i>
+                  </div>
+                  <span class="skill-name">JavaScript</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 88%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="85">
+                  <div class="skill-icon">
+                    <i class="fab fa-react"></i>
+                  </div>
+                  <span class="skill-name">React</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Backend</h3>
+              <div class="skills-grid">
+                <div class="skill-item" data-level="82">
+                  <div class="skill-icon">
+                    <i class="fab fa-node-js"></i>
+                  </div>
+                  <span class="skill-name">Node.js</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 82%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="80">
+                  <div class="skill-icon">
+                    <i class="fab fa-python"></i>
+                  </div>
+                  <span class="skill-name">Python</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="75">
+                  <div class="skill-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  <span class="skill-name">SQL</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="78">
+                  <div class="skill-icon">
+                    <i class="fab fa-git-alt"></i>
+                  </div>
+                  <span class="skill-name">Git</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 78%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3>Outras</h3>
+              <div class="skills-grid">
+                <div class="skill-item" data-level="85">
+                  <div class="skill-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <span class="skill-name">Responsivo</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="80">
+                  <div class="skill-icon">
+                    <i class="fas fa-palette"></i>
+                  </div>
+                  <span class="skill-name">UX/UI</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-level="88">
+                  <div class="skill-icon">
+                    <i class="fas fa-cogs"></i>
+                  </div>
+                  <span class="skill-name">Metodologias Ágeis</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 88%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Meu trabalho</span>
+          <h2 class="section-title">Projetos em Destaque</h2>
+        </div>
+        <div class="projects-filter">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="web">Web Apps</button>
+          <button class="filter-btn" data-filter="tools">Ferramentas</button>
+          <button class="filter-btn" data-filter="games">Games</button>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card" data-category="games">
+            <div class="project-image">
+              <img src="https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg" alt="PokéDex">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://masukemdal.github.io/pokedex/" target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-category">Games</div>
+              <h3 class="project-title">PokéDex</h3>
+              <p class="project-description">
+                Uma Pokedex completa para pesquisar pokémons e visualizar 
+                características, evoluções e status detalhados.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">API</span>
+                <span class="tech-tag">CSS3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="games">
+            <div class="project-image">
+              <img src="https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg" alt="Digivice">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://masukemdal.github.io/digivice/" target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-category">Games</div>
+              <h3 class="project-title">Digivice</h3>
+              <p class="project-description">
+                Digivice nostálgico e totalmente funcional para comparar 
+                DIGIMONS com interface interativa e animações.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Animations</span>
+                <span class="tech-tag">Responsive</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="tools">
+            <div class="project-image">
+              <img src="https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg" alt="Simulador">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://masukemdal.github.io/simulador.de.pos/" target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-category">Ferramentas</div>
+              <h3 class="project-title">Simulador de Máquina</h3>
+              <p class="project-description">
+                Simulador interativo que demonstra funcionalidades de máquinas 
+                específicas para treinamento e aprendizado.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Simulation</span>
+                <span class="tech-tag">Interactive</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="tools">
+            <div class="project-image">
+              <img src="https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg" alt="Cronograma">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://masukemdal.github.io/cronograma.universidade/" target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-category">Ferramentas</div>
+              <h3 class="project-title">Cronograma de Treinamentos</h3>
+              <p class="project-description">
+                Plataforma para criar e gerenciar cronogramas de treinamentos 
+                de forma simples e intuitiva.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Management</span>
+                <span class="tech-tag">Dashboard</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="web">
+            <div class="project-image">
+              <img src="https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg" alt="MDAL Site">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://masukemdal.github.io/SiteMDAL/" target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-category">Web Apps</div>
+              <h3 class="project-title">Site Profissional MDAL</h3>
+              <p class="project-description">
+                Website profissional para apresentar portfólios e serviços 
+                de profissionais de diversas áreas.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Professional</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="web">
+            <div class="project-image">
+              <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" alt="Cubo Mágico">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://masukemdal.github.io/cubemagic/" target="_blank" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-category">Games</div>
+              <h3 class="project-title">CubeMagic</h3>
+              <p class="project-description">
+                Cubo Mágico 3D funcional com simulador interativo de Cubo de Rubik 
+                desenvolvido com JavaScript puro.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">3D</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Interactive</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Vamos trabalhar juntos</span>
+          <h2 class="section-title">Entre em Contato</h2>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Vamos criar algo incrível juntos!</h3>
+            <p>
+              Estou sempre aberto a discutir novos projetos, oportunidades 
+              criativas ou parcerias. Se você tem uma ideia em mente, 
+              vamos conversar!
+            </p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:matheusmarferreira@hotmail.com">matheusmarferreira@hotmail.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="contact-label">WhatsApp</span>
+                  <a href="https://api.whatsapp.com/send?phone=5534998829396" target="_blank">+55 (34) 99882-9396</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="contact-label">Localização</span>
+                  <span>Brasil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form class="form">
+              <div class="form-group">
+                <input type="text" class="form-input" placeholder="Seu nome" required>
+                <label class="form-label">Nome</label>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-input" placeholder="Seu email" required>
+                <label class="form-label">Email</label>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-input" placeholder="Assunto" required>
+                <label class="form-label">Assunto</label>
+              </div>
+              <div class="form-group">
+                <textarea class="form-input" rows="5" placeholder="Sua mensagem" required></textarea>
+                <label class="form-label">Mensagem</label>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <span>Enviar Mensagem</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/masukemdal/" target="_blank" class="social-link">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/masukemdal" target="_blank" class="social-link">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=5534998829396" target="_blank" class="social-link">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+          <a href="mailto:matheusmarferreira@hotmail.com" class="social-link">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-text">
+            <p>&copy; 2024 Matheus Marques Ferreira. Todos os direitos reservados.</p>
+            <p>Desenvolvido com <i class="fas fa-heart"></i> e muito café</p>
+          </div>
+          <div class="footer-links">
+            <a href="#home">Início</a>
+            <a href="#about">Sobre</a>
+            <a href="#projects">Projetos</a>
+            <a href="#contact">Contato</a>
+          </div>
+        </div>
+      </div>
     </footer>
 
-    <script>
-      // Script para adicionar a classe 'visible' quando a seção entra na viewport
-      document.addEventListener("DOMContentLoaded", function () {
-        const sections = document.querySelectorAll("main section:not(#hero)"); // Seleciona todas as sections dentro de main, exceto a hero
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Opcional: Para que a animação só aconteça uma vez
-              }
-            });
-          },
-          {
-            threshold: 0.1, // Aciona quando 10% da seção está visível
-          }
-        );
-
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-      });
-    </script>
+    <script src="scripts/main.js"></script>
   </body>
 </html>
